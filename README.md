@@ -60,6 +60,14 @@ FoldX is proprietary software with **free licenses for academic and non-profit r
    ```bash
    tar -xvf foldx5Linux64.tar.gz
 
+# Rename and make executable
+chmod +x foldx_2024* foldx  # Or whichever version name is extracted
+
+# Move to a directory in your PATH (requires sudo)
+sudo cp foldx /usr/local/bin/foldx[cite: 8]
+
+foldx --help
+
 | Zone | Distance | Engineering Objective | Strategy |
 | :--- | :---: | :--- | :--- |
 | **Catalytic Core** | `0.0 – 4.5 Å` | **Preserve Chemistry** | Strictly conserved[cite: 8]. Locked to avoid catalytic inactivation[cite: 8]. |
