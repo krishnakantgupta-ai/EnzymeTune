@@ -42,6 +42,24 @@ conda activate enzymetuner
 conda install -c conda-forge openbabel vina biopython pandas matplotlib -y
 pip install torch fair-esm
 
+### 🧬 FoldX 5.0 Installation & Setup
+
+FoldX is proprietary software with **free licenses for academic and non-profit research**. Because redistribution of the binary is restricted, you must download it directly from the official portal.
+
+#### Step 1: Request an Academic License
+1. Visit the [FoldX Suite Registration Page](https://foldxsuite.crg.eu/)[cite: 8].
+2. Register using your institutional email address (`.edu`, `.ac.*`, or institutional domain).
+3. Confirm your account via the verification email and sign in.
+
+#### Step 2: Download the Binary
+1. Navigate to the **Downloads** section.
+2. Download the version corresponding to your operating system:
+   * **Linux:** `FoldX 5.0 (Linux 64-bit)`
+   * **macOS:** `FoldX 5.0 (macOS 64-bit)`
+3. Extract the downloaded archive (usually a `.tar.gz` or `.zip` file):
+   ```bash
+   tar -xvf foldx5Linux64.tar.gz
+
 | Zone | Distance | Engineering Objective | Strategy |
 | :--- | :---: | :--- | :--- |
 | **Catalytic Core** | `0.0 – 4.5 Å` | **Preserve Chemistry** | Strictly conserved[cite: 8]. Locked to avoid catalytic inactivation[cite: 8]. |
