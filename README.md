@@ -42,6 +42,12 @@ conda activate enzymetuner
 conda install -c conda-forge openbabel vina biopython pandas matplotlib -y
 pip install torch fair-esm
 
+| Zone | Distance | Engineering Objective | Strategy |
+| :--- | :---: | :--- | :--- |
+| **Catalytic Core** | `0.0 – 4.5 Å` | **Preserve Chemistry** | Strictly conserved[cite: 8]. Locked to avoid catalytic inactivation[cite: 8]. |
+| **Kinetic Shell** | `4.5 – 8.5 Å` | **Optimize $K_m$ & $V_{\max}$** | Reshape binding cleft & transition-state electrostatics[cite: 8]. Evaluated via baseline-calibrated AutoDock Vina[cite: 8]. |
+| **Scaffold Zone** | `> 8.5 Å` | **Elevate $T_m$ & Half-life** | Maximize thermodynamic folding stability ($\Delta\Delta G_{\text{folding}} < 0$) using FoldX 5.0 with zero catalytic penalty[cite: 8]. |
+
 python enzymetuner.py \
   --pdb 1XYZ_clean.pdb \
   --chain A \
@@ -53,3 +59,18 @@ python enzymetuner.py \
   --out single_candidates.csv \
   --out_combos combinatorial_designs.csv \
   --plot optimization_landscape.png
+
+| Flag | Default | Description |
+| :--- | :---: | :--- |
+| `--pdb` | *Required* | Path to clean, input protein PDB file[cite: 9]. |
+| `--active_site` | *Required* | Space-separated residue numbers for catalytic machinery (e.g., `35 52 108`)[cite: 9]. |
+| `--chain` | `A` | Target protein chain identifier[cite: 9]. |
+| `--ligand` | `None` | Path to ligand/transition-state analog file (`.sdf`, `.mol2`, or `.pdb`)[cite: 9]. |
+| `--foldx_bin` | `foldx` | Path to the FoldX binary executable[cite: 9]. |
+| `--vina_bin` | `vina` | Path to the AutoDock Vina binary executable[cite: 3]. |
+| `--obabel_bin` | `obabel` | Path to the OpenBabel binary executable[cite: 3]. |
+| `--max_foldx` | `30` | Number of top ESM-filtered scaffold variants to evaluate in FoldX[cite: 9]. |
+| `--max_vina` | `15` | Number of top second-shell variants to evaluate via Vina docking[cite: 9]. |
+| `--out` | `single_candidates.csv` | Output file for single-point mutations[cite: 9]. |
+| `--out_combos`| `combinatorial_designs.csv`| Output file for multi-point combinatorial variants[cite: 9]. |
+| `--plot` | `stability_vs_affinity.png`| Destination path for the 4-quadrant optimization landscape plot[cite: 9]. |
